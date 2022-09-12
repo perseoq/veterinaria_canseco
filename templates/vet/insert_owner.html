@@ -1,0 +1,30 @@
+{% extends 'base_vet.html' %}
+
+{% block title %} Insertando propietario {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+
+        <form action="{{ url_for('vet.add_owner') }}" method="post">
+ 
+            {{ form.hidden_tag() }}
+            {{ form.n.label(class='form-label') }}
+            {{ form.n(class='form-control') }}
+            {{ form.d.label(class='form-label') }}
+            {{ form.d(class='form-control') }}
+            {{ form.t.label(class='form-label') }}
+            {{ form.t(class='form-control') }}
+            {{ form.c.label(class='form-label') }}
+            {{ form.c(class='form-control') }} <br>
+            {{ form.submit(class='form-control btn btn-success') }}
+
+        </form>
+
+    </div>
+    <div class="col"></div>
+</div>
+
+{% endblock %}

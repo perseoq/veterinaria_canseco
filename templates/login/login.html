@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Entrar al sistema {% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+        <form action="{{ url_for('vet.iniciar_sesion') }}" method="post">
+            {{ data.hidden_tag() }}
+            {{ data.user.label(class="form-label") }}
+            {{ data.user(class="form-control") }}
+            {{ data.passw.label(class="form-label") }}
+            {{ data.passw(class="form-control") }}
+            {{ data.entrar(class="form-control btn btn-warning") }}
+        </form>
+    </div>
+    <div class="col"></div>
+</div>
+
+{% endblock %}
