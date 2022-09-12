@@ -32,22 +32,45 @@ def veterinaria():
 
 # ACCIONES DE OWNER
 
-@vet.route('/owner/insert', methods=['GET', 'POST'])
+@vet.route('/owner/insert', methods=['GET','POST'])
 @login_required
 def add_owner():
-    form_owner = InsertarOwner()
-    if form_owner.validate_on_submit():
-        nom = form_owner.n.data
-        dir = form_owner.d.data
-        tel = form_owner.t.data
-        cor = form_owner.c.data
-        add_owner = Owner(nombre=nom, direccion=dir, telefono=tel, correo=cor)
+    if request.method == 'POST':
+        nom = request.form['nombre']
+        dir = request.form['direccion']
+        tel = request.form['telefono']
+        cor = request.form['correo']
+        add_owner = Owner(nombre=nom,direccion=dir,telefono=tel,correo=cor)
         db.session.add(add_owner)
         db.session.commit()
         return redirect(url_for('vet.add_owner'))
-    return render_template('vet/insert_owner.html', form=form_owner)
+    return render_template('vet/insert_owner.html')
 
-if request.method == 'POST':
-nombre = request.form['nombre']
-user = request.form['usuario']
-correo = request.form['email']
+@vet.route('/pet/insert', methods=['GET','POST'])
+@login_required
+def add_pet():
+    if request.method == 'POST':
+        nom = request.form['nombre']
+        es = request.form['especie']
+        ani = request.form['animal']
+        ra = request.form['raza']
+        va = request.form['vacunas']
+        add_pet = Pet(nombre=nom,especie=es,animal=ani,raza=ra,vacunas=va)
+        db.session.add(add_pet)
+        db.session.commit()
+        return redirect(url_for('vet.add_pet'))
+    return render_template('vet/insert_pet.html')
+
+@vet.route('/vaccines/insert', methods=['GET','POST'])
+@login_required
+def add_vaccines():
+    if request.method == 'POST':
+        nom = request.form['nombre']
+        fe = request.form['fecha']
+        ca = request.form['caducidad']
+        se = request.form['serie']
+        add_vaccines = Vaccines(nombre=nom,fecha=fe,caducidad=ca,serie=se)
+        db.session.add(add_vaccines)
+        db.session.commit()
+        return redirect(url_for('vet.add_vaccines'))
+    return render_template('vet/insert_vaccines.html')
