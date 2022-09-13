@@ -57,7 +57,7 @@ def borrar(id):
     elemento_a_borrar = Owner.query.get(id)
     db.session.delete(elemento_a_borrar)
     db.session.commit()
-    return redirect(url_for('vet/view.view_owner.html')) 
+    return redirect(url_for('vet.view_owner')) 
 
 
 
