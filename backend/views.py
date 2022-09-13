@@ -52,7 +52,12 @@ def view_owner():
     view_owner = Owner.query.all()
     return render_template('vet/view_owner.html', datos=view_owner)
 
-    
+@vet.route('/borrar/<string:id>')
+def borrar(id):
+    elemento_a_borrar = Owner.query.get(id)
+    db.session.delete(elemento_a_borrar)
+    db.session.commit()
+    return redirect(url_for('vet/view.view_owner.html')) 
 
 
 
