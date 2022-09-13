@@ -1,0 +1,35 @@
+{% extends 'base_vet.html' %}
+
+
+{% block title %} Ver Propietario de mascotas {% endblock %}
+
+{% block content %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>nombre</th>
+            <th>direccion</th>
+            <th>telefono</th>
+            <th>correo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for elemento in datos %}
+        <tr>
+    
+            <td>{{ elemento.nombre }}</td>
+            <td>{{ elemento.direccion }}</td>
+            <td>{{ elemento.telefono }}</td>
+            <td>{{ elemento.correo }}</td>
+            <td>
+                <a href=""><button type="submit" class="btn btn-danger">Borrar</button></a>
+                <a href=""><button type="submit" class="btn btn-success">Editar</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

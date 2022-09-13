@@ -35,42 +35,36 @@ def veterinaria():
 @vet.route('/owner/insert', methods=['GET','POST'])
 @login_required
 def add_owner():
-    if request.method == 'POST':
-        nom = request.form['nombre']
-        dir = request.form['direccion']
-        tel = request.form['telefono']
-        cor = request.form['correo']
-        add_owner = Owner(nombre=nom,direccion=dir,telefono=tel,correo=cor)
+    add= InsertarOwner()
+    if add.validate_on_submit(): #validamos datos
+        n = add.n.data
+        d= add.d.data
+        t = add.t.data
+        c = add.c.data
+        add_owner = Owner(nombre=n,direccion=d,telefono=t,correo=c)
         db.session.add(add_owner)
         db.session.commit()
         return redirect(url_for('vet.add_owner'))
-    return render_template('vet/insert_owner.html')
+    return render_template('vet/insert_owner.html',form=add)
 
-@vet.route('/pet/insert', methods=['GET','POST'])
-@login_required
-def add_pet():
-    if request.method == 'POST':
-        nom = request.form['nombre']
-        es = request.form['especie']
-        ani = request.form['animal']
-        ra = request.form['raza']
-        va = request.form['vacunas']
-        add_pet = Pet(nombre=nom,especie=es,animal=ani,raza=ra,vacunas=va)
-        db.session.add(add_pet)
-        db.session.commit()
-        return redirect(url_for('vet.add_pet'))
-    return render_template('vet/insert_pet.html')
+@vet.route('/view/owner')
+def view_owner():
+    view_owner = Owner.query.all()
+    return render_template('vet/view_owner.html', datos=view_owner)
 
-@vet.route('/vaccines/insert', methods=['GET','POST'])
-@login_required
-def add_vaccines():
-    if request.method == 'POST':
-        nom = request.form['nombre']
-        fe = request.form['fecha']
-        ca = request.form['caducidad']
-        se = request.form['serie']
-        add_vaccines = Vaccines(nombre=nom,fecha=fe,caducidad=ca,serie=se)
-        db.session.add(add_vaccines)
-        db.session.commit()
-        return redirect(url_for('vet.add_vaccines'))
-    return render_template('vet/insert_vaccines.html')
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
