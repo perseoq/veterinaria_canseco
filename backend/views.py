@@ -59,10 +59,20 @@ def borrar(id):
     db.session.commit()
     return redirect(url_for('vet.view_owner')) 
 
+@vet.route('/actualizar/<string:id>', methods=['GET', 'POST'])
+def actualizar_owner(id):
+    query = Owner.query.get(id)
+    if request.method == 'POST':
+        query.nombre = request.form['nombre']
+        query.direccion = request.form['direccion']
+        query.telefono= request.form['telefono']
+        query.correo = request.form['correo']
+        db.session.commit()
+        return redirect(url_for('vet.view_owner'))
+    return render_template('vet/actualizar_owner.html',datos=query)
 
 
-
-
+   
 
 
 

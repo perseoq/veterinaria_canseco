@@ -1,0 +1,31 @@
+{% extends 'base_vet.html' %}
+
+{% block title %} Editando propietario {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+
+        <form action="{{ url_for('vet.actualizar_owner, id=datos.id') }}" method="post">
+  <label for="">Nombre</label><br>
+    <input type="text" name="nombre" value="{{ datos.nombre }}"><br>
+    <label for="">Direccion</label><br>
+    <input type="text" name="direccion" value="{{ datos.direccion }}"><br>
+    <label for="">Telefono</label><br>
+    <input type="text" name="telefono" value="{{ datos.telefono }}"><br>
+    <label for="">Correo</label><br>
+    <input type="text" name="correo" value="{{ datos.correo }}"><br>
+    <button type="submit">Enviar</button>
+           
+
+        </form>
+
+    </div>
+    <div class="col"></div>
+</div>
+
+{% endblock %}
+
+
