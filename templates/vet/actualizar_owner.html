@@ -8,16 +8,16 @@
     <div class="col"></div>
     <div class="col">
 
-        <form action="{{ url_for('vet.actualizar_owner, id=datos.id') }}" method="post">
-  <label for="">Nombre</label><br>
-    <input type="text" name="nombre" value="{{ datos.nombre }}"><br>
-    <label for="">Direccion</label><br>
-    <input type="text" name="direccion" value="{{ datos.direccion }}"><br>
-    <label for="">Telefono</label><br>
-    <input type="text" name="telefono" value="{{ datos.telefono }}"><br>
-    <label for="">Correo</label><br>
-    <input type="text" name="correo" value="{{ datos.correo }}"><br>
-    <button type="submit">Enviar</button>
+        <form action="{{ url_for('vet.actualizar_owner', id=datos.id) }}" method="post">
+    <label for="">Cambio de Nombre</label><br>
+    <input type="text" name="nombre" class='form-control' value="{{ datos.nombre }}"><br>
+    <label for="">Cambio de Direccion</label><br>
+    <input type="text" name="direccion"class='form-control'  value="{{ datos.direccion }}"><br>
+    <label for="">Cambio de Telefono</label><br>
+    <input type="text" name="telefono" class='form-control' value="{{ datos.telefono }}"><br>
+    <label for="">Cambio de Correo</label><br>
+    <input type="text" name="correo" class='form-control' value="{{ datos.correo }}"><br> <br>
+    <button type="submit" class='form-control btn btn-success'>Enviar</button>
            
 
         </form>

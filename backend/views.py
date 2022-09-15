@@ -69,7 +69,7 @@ def actualizar_owner(id):
         query.correo = request.form['correo']
         db.session.commit()
         return redirect(url_for('vet.view_owner'))
-    return render_template('vet/actualizar_owner.html',datos=query)
+    return render_template('vet/actualizar_owner.html', datos=query)
 
 
    
