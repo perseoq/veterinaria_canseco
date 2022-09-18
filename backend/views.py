@@ -89,7 +89,6 @@ def inserta_pet():
         db.session.commit()
         return redirect(url_for('vet.view_owner'))
     return render_template('vet/pet/inserta_pet.html', owner_list=get_data)
-
    
 @vet.route('/ver_mascota')
 @login_required
