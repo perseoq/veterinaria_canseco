@@ -97,6 +97,13 @@ def view_pet():
     return render_template('vet/pet/view_pet.html', datos = ver_mascota)
 
 
+@vet.route('/mascota/borrar/<string:id>')
+@login_required
+def delete_pet(id):
+    borrar_mascota = Pet.query.get(id)
+    db.session.delete(borrar_mascota)
+    db.session.commit()
+    return redirect(url_for('vet.view_pet')) 
 
 
 

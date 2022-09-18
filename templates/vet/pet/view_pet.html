@@ -9,9 +9,10 @@
     <thead>
         <tr>
             <th>Dueño</th>
-            <th>Nombre</th>
+            <th>Nombre de la mascota</th>
             <th>Tipo de Animal</th>
             <th>Raza</th>
+            
             
         </tr>
     </thead>
@@ -24,7 +25,7 @@
             <td>{{ pet.animal }}</td>
             <td>{{ pet.raza }}</td>
             <td>
-                <a href="#"><button type="submit" class="btn btn-danger">Borrar</button></a>
+                <a href="{{ url_for('vet.delete_pet', id=pet.id) }}"><button type="submit" class="btn btn-danger">Borrar</button></a>
                 <a href="#"><button type="submit" class="btn btn-success">Editar</button></a>
             </td>
         </tr>
