@@ -48,11 +48,13 @@ def add_owner():
     return render_template('vet/insert_owner.html',form=add)
 
 @vet.route('/view/owner')
+@login_required
 def view_owner():
     view_owner = Owner.query.all()
     return render_template('vet/view_owner.html', datos=view_owner)
 
 @vet.route('/borrar/<string:id>')
+@login_required
 def borrar(id):
     elemento_a_borrar = Owner.query.get(id)
     db.session.delete(elemento_a_borrar)
@@ -60,6 +62,7 @@ def borrar(id):
     return redirect(url_for('vet.view_owner')) 
 
 @vet.route('/actualizar/<string:id>', methods=['GET', 'POST'])
+@login_required
 def actualizar_owner(id):
     query = Owner.query.get(id)
     if request.method == 'POST':
@@ -71,9 +74,28 @@ def actualizar_owner(id):
         return redirect(url_for('vet.view_owner'))
     return render_template('vet/actualizar_owner.html', datos=query)
 
+@vet.route('/pet/insert', methods=['GET', 'POST'])
+@login_required
+def inserta_pet():
+    get_data = Owner.query.all()
+    if request.method == 'POST':
+        no = request.form['nom']
+        es = request.form['esp']
+        an = request.form['ani']
+        ra = request.form['raz']
+        io = request.form['ido']
+        ins_pet = Pet(nombre=no, especie=es, animal=an, raza=ra, id_owner=io)
+        db.session.add(ins_pet)
+        db.session.commit()
+        return redirect(url_for('vet.view_owner'))
+    return render_template('vet/pet/inserta_pet.html', owner_list=get_data)
 
    
-
+@vet.route('/ver_mascota')
+@login_required
+def view_pet():
+    ver_mascota = db.session.query(Owner, Pet).select_from(Owner).join(Pet).all()
+    return render_template('vet/pet/view_pet.html', datos = ver_mascota)
 
 
 

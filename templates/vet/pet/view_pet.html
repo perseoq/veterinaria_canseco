@@ -1,0 +1,36 @@
+{% extends 'base_vet.html' %}
+
+
+{% block title %} Ver Propietario de mascotas {% endblock %}
+
+{% block content %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Dueño</th>
+            <th>Nombre</th>
+            <th>Tipo de Animal</th>
+            <th>Raza</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for owner, pet in datos %}
+        <tr>
+    
+            <td>{{ owner.nombre }}</td>
+            <td>{{ pet.nombre }}</td>
+            <td>{{ pet.animal }}</td>
+            <td>{{ pet.raza }}</td>
+            <td>
+                <a href="#"><button type="submit" class="btn btn-danger">Borrar</button></a>
+                <a href="#"><button type="submit" class="btn btn-success">Editar</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
