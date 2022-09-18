@@ -26,7 +26,7 @@
             <td>{{ pet.raza }}</td>
             <td>
                 <a href="{{ url_for('vet.delete_pet', id=pet.id) }}"><button type="submit" class="btn btn-danger">Borrar</button></a>
-                <a href="#"><button type="submit" class="btn btn-success">Editar</button></a>
+                <a href="{{ url_for('vet.actualizar_pet', id=pet.id) }}"><button type="submit" class="btn btn-success">Editar</button></a>
             </td>
         </tr>
         {% endfor %}

@@ -105,7 +105,20 @@ def delete_pet(id):
     db.session.commit()
     return redirect(url_for('vet.view_pet')) 
 
-
+@vet.route('/pet/actualizar/<string:id>', methods=['GET', 'POST'])
+@login_required
+def actualizar_pet(id):
+    get_data = Owner.query.all()
+    mascota = Pet.query.get(id)
+    if request.method == 'POST':
+        mascota.nombre = request.form['nom']
+        mascota.especie = request.form['esp']
+        mascota.animal = request.form['ani']
+        mascota.raza = request.form['raz']
+        mascota.id_owner = request.form['ido']
+        db.session.commit()
+        return redirect(url_for('vet.view_owner'))
+    return render_template('vet/pet/actualiza_pet.html', owner_list=get_data, mascota=mascota)
 
 
 
