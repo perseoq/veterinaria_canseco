@@ -1,0 +1,33 @@
+{% extends 'base_vet.html' %}
+
+{% block title %} Actualiza Vacuna {% endblock %}
+
+{% block content %} 
+<div class="container">
+    <h1 class="mt-5 mb-4">Edita la Vacunas</h1>
+<form action="{{ url_for('vet.actualizar_vaccines', id=datos.id) }}" method="post">
+    <div class="row">
+        <div class="col">
+            <label for="">Nombre de la vacuna: </label>
+            <input type="text" name="nombr" value="{{ datos.nombre }}" class="form-control">
+            <label for="">Fecha:</label>
+            <input type="date" name="fec" value="{{ datos.fecha }}" class="form-control">
+            <label for="">Caducidad:</label>
+            <input type="date" name="cad" value="{{ datos.caducidad }}" class="form-control">
+            
+        </div>
+        <div class="col">
+            <label for="">Serie:</label>
+            <input type="text" name="ser" value="{{ datos.serie }}" class="form-control"><br>
+     <select name="idpe" id="" class="form-control">
+                <option value="" autofocus> Selecciona Mascota</option>
+                {% for pet in pet_list %}
+                <option name="idpe" value="{{ pet.id }}">{{ pet.nombre }}</option> <!--pet.id-->
+                {% endfor %}
+            </select><br>
+            <button type="submit" class="form-control btn btn-success">Guardar mascota</button>
+        </div>
+    </div>
+</form>
+</div>
+{% endblock %}

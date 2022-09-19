@@ -1,0 +1,38 @@
+{% extends 'base_vet.html' %}
+
+
+{% block title %} Ver Vacunas de las Mascotas {% endblock %}
+
+{% block content %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre de la Mascota</th>
+            <th>Nombre de la Vacuna</th>
+            <th>Fecha</th>
+            <th>Caducidad</th>
+            <th>Serie</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for pet, vaccines in datos %}
+        <tr>
+    
+            <td>{{ pet.nombre }}</td>
+            <td>{{ vaccines.nombre }}</td>
+            <td>{{ vaccines.fecha }}</td>
+            <td>{{ vaccines.caducidad }}</td>
+            <td>{{ vaccines.serie }}</td>
+            <td>
+                <a href="{{ url_for('vet.delete_vaccines',id=vaccines.id) }}"><button type="submit" class="btn btn-danger">Borrar</button></a>
+                <a href="{{ url_for('vet.actualizar_vaccines',id=vaccines.id) }}"><button type="submit" class="btn btn-success">Editar</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

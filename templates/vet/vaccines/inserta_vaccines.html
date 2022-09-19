@@ -1,0 +1,30 @@
+{% extends 'base_vet.html' %}
+
+{% block title %} Inserta vaccines {% endblock %}
+
+{% block content %} 
+
+<div class="container">
+    <h1 class="mt-5 mb-4">Inserta vaccines</h1>
+    <form action="{{ url_for('vet.inserta_vaccines') }}" method="post">
+    <div class="row">
+        <div class="col">
+            <input type="text" name="nombr" id="" placeholder="Inserta nombre" class="form-control"> <br>
+            <input type="date" name="fec" id="" placeholder="Inserta fecha" class="form-control"> <br>
+            <input type="date" name="cad" id="" placeholder="Inserta caducidad" class="form-control"> <br>
+        </div>
+        <div class="col">
+            <input type="text" name="ser" id="" placeholder="Inserta serie" class="form-control"><br>
+            <select name="idpe" id="" class="form-control">
+                <option value="" selected>Selecciona Mascota</option>
+                {% for pet in pet_list %}
+                <option name="idpe" value="{{ pet.id }}">{{ pet.nombre }}</option> <!--pet.id-->
+                {% endfor %}
+            </select> <br>
+            <button type="submit" class="form-control btn btn-success">Guardar vacunas</button>
+        </div>
+    </div>
+    </form>
+</div>
+
+{% endblock %}

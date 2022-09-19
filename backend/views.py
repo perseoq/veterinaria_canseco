@@ -126,13 +126,45 @@ def actualizar_pet(id):
 def inserta_vaccines():
     get_data = Pet.query.all()
     if request.method == 'POST':
-        nom = request.form['nomb']
+        nomb = request.form['nombr']
         fe = request.form['fec']
         ca = request.form['cad']
         se = request.form['ser']
-        idp = request.form['idp']
-        ins_vaccines = Vaccines(nombre=nom, fecha=fe, caducidad=ca, serie=se, id_pet=idp)
+        idp = request.form['idpe']
+        ins_vaccines = Vaccines(nombre=nomb, fecha=fe, caducidad=ca, serie=se, id_mascota=idp)
         db.session.add(ins_vaccines)
         db.session.commit()
-        return redirect(url_for('vet.view_vacciones'))
-    return render_template('vet/pet/inserta_vacciones.html', pet_list=get_data)
+        return redirect(url_for('vet.view_vaccines'))
+    return render_template('vet/vaccines/inserta_vaccines.html', pet_list=get_data )
+
+
+@vet.route('/ver_vaccines')
+@login_required
+def view_vaccines():
+    ver_vacunas = db.session.query(Pet,Vaccines).select_from(Pet).join(Vaccines).all()
+    return render_template('vet/vaccines/view_vaccines.html', datos = ver_vacunas)
+
+
+
+@vet.route('/vaccines/borrar/<string:id>')
+@login_required
+def delete_vaccines(id):
+    borrar_vaccines = Vaccines.query.get(id)
+    db.session.delete(borrar_vaccines)
+    db.session.commit()
+    return redirect(url_for('vet.view_vaccines')) 
+
+@vet.route('/vaccines/actualizar/<string:id>', methods=['GET', 'POST'])
+@login_required
+def actualizar_vaccines(id):
+    get_data = Pet.query.all()
+    vaccines = Vaccines.query.get(id)
+    if request.method == 'POST':
+        vaccines.nombre = request.form['nombr']
+        vaccines.fecha = request.form['fec']
+        vaccines.caducidad = request.form['cad']
+        vaccines.serie = request.form['ser']
+        vaccines.id_mascota = request.form['idpe']
+        db.session.commit()
+        return redirect(url_for('vet.view_vaccines'))
+    return render_template('vet/vaccines/actualiza_vaccines.html', pet_list=get_data, datos=vaccines)
