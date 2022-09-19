@@ -4,18 +4,26 @@
 
 {% block content %} 
 
-<form action="{{ url_for('vet.inserta_pet') }}" method="post">
-    <input type="text" name="nom" id="" placeholder="Inserta nombre">
-    <input type="text" name="esp" id="" placeholder="Inserta especie">
-    <input type="text" name="ani" id="" placeholder="Inserta animal">
-    <input type="text" name="raz" id="" placeholder="Inserta raza">
-    <select name="ido" id="">
-        {% for owner in owner_list %}
-        <option name="ido" value="{{ owner.id }}">{{ owner.nombre }}</option> <!--owner.id-->
-        {% endfor %}
-    </select>
-    <button type="submit">Guardar mascota</button>
-    
-</form>
+<div class="container">
+    <h1 class="mt-5 mb-4">Inserta mascota</h1>
+    <form action="{{ url_for('vet.inserta_pet') }}" method="post">
+    <div class="row">
+        <div class="col">
+            <input type="text" name="nom" id="" placeholder="Inserta nombre" class="form-control"> <br>
+            <input type="text" name="esp" id="" placeholder="Inserta especie" class="form-control"> <br>
+            <input type="text" name="ani" id="" placeholder="Inserta animal" class="form-control"> <br>
+        </div>
+        <div class="col">
+            <input type="text" name="raz" id="" placeholder="Inserta raza" class="form-control"><br>
+            <select name="ido" id="" class="form-control">
+                {% for owner in owner_list %}
+                <option name="ido" value="{{ owner.id }}">{{ owner.nombre }}</option> <!--owner.id-->
+                {% endfor %}
+            </select> <br>
+            <button type="submit" class="form-control btn btn-success">Guardar mascota</button>
+        </div>
+    </div>
+    </form>
+</div>
 
 {% endblock %}

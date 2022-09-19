@@ -3,26 +3,31 @@
 {% block title %} Actualiza mascota {% endblock %}
 
 {% block content %} 
-
-<form action="{{ url_for('vet.inserta_pet') }}" method="post">
-    
-    <label for="">Nombre mascota: </label>
-    <input type="text" name="nom" value="{{ mascota.nombre }}" >
-    <label for="">Especie:</label>
-    <input type="text" name="esp" value="{{ mascota.especie }}" >
-    <label for="">Animal:</label>
-    <input type="text" name="ani" value="{{ mascota.animal }}" >
-    <label for="">Raza</label>
-    <input type="text" name="raz" value="{{ mascota.raza }}" >
-    <label for="">Nombre del Propieratio</label>
-    <select name="ido" id="">
-        <option value="" autofocus></option>
-        {% for owner in owner_list %}
-        <option name="ido" value="{{ owner.id }}">{{ owner.nombre }}</option> <!--owner.id-->
-        {% endfor %}
-    </select>
-    <button type="submit">Guardar mascota</button>
-    
+<div class="container">
+    <h1 class="mt-5 mb-4">Edita la mascota</h1>
+<form action="{{ url_for('vet.actualizar_pet', id=mascota.id) }}" method="post">
+    <div class="row">
+        <div class="col">
+            <label for="">Nombre mascota: </label>
+            <input type="text" name="nom" value="{{ mascota.nombre }}" class="form-control">
+            <label for="">Especie:</label>
+            <input type="text" name="esp" value="{{ mascota.especie }}" class="form-control">
+            <label for="">Animal:</label>
+            <input type="text" name="ani" value="{{ mascota.animal }}" class="form-control">
+        </div>
+        <div class="col">
+            <label for="">Raza</label>
+            <input type="text" name="raz" value="{{ mascota.raza }}" class="form-control">
+            <label for="">Nombre del Propieratio</label>
+            <select name="ido" id="" class="form-control">
+                <option value="" autofocus></option>
+                {% for owner in owner_list %}
+                <option name="ido" value="{{ owner.id }}">{{ owner.nombre }}</option> <!--owner.id-->
+                {% endfor %}
+            </select><br>
+            <button type="submit" class="form-control btn btn-success">Guardar mascota</button>
+        </div>
+    </div>
 </form>
-
+</div>
 {% endblock %}

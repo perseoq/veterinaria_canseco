@@ -87,7 +87,7 @@ def inserta_pet():
         ins_pet = Pet(nombre=no, especie=es, animal=an, raza=ra, id_owner=io)
         db.session.add(ins_pet)
         db.session.commit()
-        return redirect(url_for('vet.view_owner'))
+        return redirect(url_for('vet.view_pet'))
     return render_template('vet/pet/inserta_pet.html', owner_list=get_data)
    
 @vet.route('/ver_mascota')
@@ -117,7 +117,7 @@ def actualizar_pet(id):
         mascota.raza = request.form['raz']
         mascota.id_owner = request.form['ido']
         db.session.commit()
-        return redirect(url_for('vet.view_owner'))
+        return redirect(url_for('vet.view_pet'))
     return render_template('vet/pet/actualiza_pet.html', owner_list=get_data, mascota=mascota)
 
 
