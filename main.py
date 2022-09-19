@@ -23,8 +23,13 @@ from backend.models import Admin
 @login.user_loader
 def load_admin_or_user(id):
     admin = Admin.query.get(int(id))
+    # varible = Tabla.query.get(int(id))
     if admin:
         return admin
+    '''
+    else:
+        return variable
+    '''    
 
 
 with app.app_context():
