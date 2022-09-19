@@ -2,4 +2,18 @@
 
 {% block title %} Bienvenidos a la Veterinaria {% endblock %}
 
-{% block content %} {% endblock %}
+{% block content %}
+
+<div class="row mt-5">
+    <div class="col"></div>
+    <div class="col mt-5 text-center">
+        <img src="{{ url_for('static', filename='img/img_front.jpg') }}" alt="" width="280px" class="mt-5">
+        <h2 class="text-center">Clínica Veterinaria del Sur</h2>
+        <div class="text-center">
+            Luis G. de León 12, Copilco el Alto, Coyoacán, 04360 Ciudad de México, CDMX
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
+
+{% endblock %}
