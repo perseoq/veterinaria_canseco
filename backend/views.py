@@ -121,6 +121,18 @@ def actualizar_pet(id):
     return render_template('vet/pet/actualiza_pet.html', owner_list=get_data, mascota=mascota)
 
 
-
-
-
+@vet.route('/vaccines/insert', methods=['GET', 'POST'])
+@login_required
+def inserta_vaccines():
+    get_data = Pet.query.all()
+    if request.method == 'POST':
+        nom = request.form['nomb']
+        fe = request.form['fec']
+        ca = request.form['cad']
+        se = request.form['ser']
+        idp = request.form['idp']
+        ins_vaccines = Vaccines(nombre=nom, fecha=fe, caducidad=ca, serie=se, id_pet=idp)
+        db.session.add(ins_vaccines)
+        db.session.commit()
+        return redirect(url_for('vet.view_vacciones'))
+    return render_template('vet/pet/inserta_vacciones.html', pet_list=get_data)
