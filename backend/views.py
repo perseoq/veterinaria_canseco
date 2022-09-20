@@ -47,6 +47,19 @@ def add_owner():
         return redirect(url_for('vet.add_owner'))
     return render_template('vet/insert_owner.html',form=add)
 
+'''
+# @vet.route('/view/owner/<int:num_page>', methods=['GET', 'POST'])
+@vet.route('/view/owner')
+@login_required
+# def view_owner(num_page):
+def view_owner():
+    view_owner = Owner.query.all()
+    # from sqlalchemy import desc, asc
+    # variable = Owner.query.order_by(desc('id')).paginate(per_page=10, page=num_page, error_out=False)
+    # var = variable
+    return render_template('vet/view_owner.html', datos=view_owner)
+'''
+
 @vet.route('/view/owner')
 @login_required
 def view_owner():
