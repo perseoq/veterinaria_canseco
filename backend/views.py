@@ -153,11 +153,11 @@ def inserta_vaccines():
     return render_template('vet/vaccines/inserta_vaccines.html', pet_list=get_data )
 
 
-@vet.route('/ver_vaccines')
+@vet.route('/ver_vaccines/<int:num_page>', methods=['GET', 'POST'])
 @login_required
-def view_vaccines():
-    ver_vacunas = db.session.query(Pet,Vaccines).select_from(Pet).join(Vaccines).all()
-    return render_template('vet/vaccines/view_vaccines.html', datos = ver_vacunas)
+def view_vaccines(num_page):
+    ver_vacunas = db.session.query(Pet,Vaccines).select_from(Pet).join(Vaccines).paginate(per_page=5, page=num_page, error_out=False)
+    return render_template('vet/vaccines/view_vaccines.html', datos=ver_vacunas,num_page=1)
 
 
 

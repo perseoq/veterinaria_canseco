@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for pet, vaccines in datos %}
+        {% for pet, vaccines in datos.items %}
         <tr>
     
             <td>{{ pet.nombre }}</td>
@@ -34,5 +34,22 @@
         {% endfor %}
     </tbody>
 </table>
+
+<nav aria-label="...">
+    <ul class="pagination">
+        {% for page in datos.iter_pages() %}
+            {% if page %}
+                <li class="page-item">
+                <a href="{{ url_for('vet.view_vaccines', num_page=page) }}"
+                class="page-link" tabindex="-1">{{ page }}</a>
+                </li>
+            {% else %}
+                >>>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+
+
 
 {% endblock %}
