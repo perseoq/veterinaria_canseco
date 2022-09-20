@@ -59,12 +59,13 @@ def view_owner():
     # var = variable
     return render_template('vet/view_owner.html', datos=view_owner)
 '''
-
-@vet.route('/view/owner')
+from sqlalchemy import desc, asc
+@vet.route('/view/owner/<int:num_page>', methods=['GET', 'POST'])
 @login_required
-def view_owner():
-    view_owner = Owner.query.all()
-    return render_template('vet/view_owner.html', datos=view_owner)
+def view_owner(num_page):
+    view_owner = Owner.query.order_by(desc('id')).paginate(per_page=10, page=num_page, error_out=False)
+    return render_template('vet/view_owner.html', datos=view_owner, num_page=1)
+  
 
 @vet.route('/borrar/<string:id>')
 @login_required

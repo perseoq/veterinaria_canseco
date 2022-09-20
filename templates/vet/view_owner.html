@@ -16,7 +16,7 @@
     </thead>
     <tbody>
         <!--  {% for elemento in datos.items %} -->
-        {% for elemento in datos %}
+        {% for elemento in datos.items %}
         <tr>
     
             <td>{{ elemento.nombre }}</td>
@@ -32,7 +32,7 @@
     </tbody>
 </table>
 
-<!--
+
 
 <nav aria-label="...">
     <ul class="pagination">
@@ -40,7 +40,7 @@
         # iter_pages(): sirve para ITERAR el número de páginas
             {% if page %}
                 <li class="page-item">
-                <a href="{{ url_for('index_pagination', num_page=page) }}"
+                <a href="{{ url_for('view_owner', num_page=page) }}"
                 class="page-link" tabindex="-1">{{ page }}</a>
                 </li>
             {% else %}
@@ -50,6 +50,6 @@
     </ul>
 </nav>
 
--->
+
 
 {% endblock %}
