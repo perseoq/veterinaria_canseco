@@ -19,7 +19,7 @@
             <label for="">Raza</label>
             <input type="text" name="raz" value="{{ mascota.raza }}" class="form-control">
             <label for="">Nombre del Propieratio</label>
-            <select name="ido" id="" class="form-control">
+            <select name="ido" id="" class="form-control" required>
                 <option value="" autofocus></option>
                 {% for owner in owner_list %}
                 <option name="ido" value="{{ owner.id }}">{{ owner.nombre }}</option> <!--owner.id-->

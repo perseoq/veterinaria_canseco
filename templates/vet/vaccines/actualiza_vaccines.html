@@ -19,7 +19,7 @@
         <div class="col">
             <label for="">Serie:</label>
             <input type="text" name="ser" value="{{ datos.serie }}" class="form-control"><br>
-     <select name="idpe" id="" class="form-control">
+     <select name="idpe" id="" class="form-control" required>
                 <option value="" autofocus> Selecciona Mascota</option>
                 {% for pet in pet_list %}
                 <option name="idpe" value="{{ pet.id }}">{{ pet.nombre }}</option> <!--pet.id-->
