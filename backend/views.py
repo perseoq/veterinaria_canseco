@@ -44,7 +44,7 @@ def add_owner():
         add_owner = Owner(nombre=n,direccion=d,telefono=t,correo=c)
         db.session.add(add_owner)
         db.session.commit()
-        return redirect(url_for('vet.add_owner'))
+        return redirect(url_for('vet.add_owner', num_page=1))
     return render_template('vet/insert_owner.html',form=add)
 
 '''
@@ -73,7 +73,7 @@ def borrar(id):
     elemento_a_borrar = Owner.query.get(id)
     db.session.delete(elemento_a_borrar)
     db.session.commit()
-    return redirect(url_for('vet.view_owner')) 
+    return redirect(url_for('vet.view_owner', num_page=1)) 
 
 @vet.route('/actualizar/<string:id>', methods=['GET', 'POST'])
 @login_required
@@ -85,7 +85,7 @@ def actualizar_owner(id):
         query.telefono= request.form['telefono']
         query.correo = request.form['correo']
         db.session.commit()
-        return redirect(url_for('vet.view_owner'))
+        return redirect(url_for('vet.view_owner', num_page=1))
     return render_template('vet/actualizar_owner.html', datos=query)
 
 @vet.route('/pet/insert', methods=['GET', 'POST'])
@@ -101,7 +101,7 @@ def inserta_pet():
         ins_pet = Pet(nombre=no, especie=es, animal=an, raza=ra, id_owner=io)
         db.session.add(ins_pet)
         db.session.commit()
-        return redirect(url_for('vet.view_pet'))
+        return redirect(url_for('vet.view_pet', num_page=1))
     return render_template('vet/pet/inserta_pet.html', owner_list=get_data)
    
 @vet.route('/ver_mascota/<int:num_page>', methods=['GET', 'POST'])
@@ -118,7 +118,7 @@ def delete_pet(id):
     borrar_mascota = Pet.query.get(id)
     db.session.delete(borrar_mascota)
     db.session.commit()
-    return redirect(url_for('vet.view_pet')) 
+    return redirect(url_for('vet.view_pet', num_page=1)) 
 
 @vet.route('/pet/actualizar/<string:id>', methods=['GET', 'POST'])
 @login_required
@@ -132,7 +132,7 @@ def actualizar_pet(id):
         mascota.raza = request.form['raz']
         mascota.id_owner = request.form['ido']
         db.session.commit()
-        return redirect(url_for('vet.view_pet'))
+        return redirect(url_for('vet.view_pet', num_page=1))
     return render_template('vet/pet/actualiza_pet.html', owner_list=get_data, mascota=mascota)
 
 
@@ -149,7 +149,7 @@ def inserta_vaccines():
         ins_vaccines = Vaccines(nombre=nomb, fecha=fe, caducidad=ca, serie=se, id_mascota=idp)
         db.session.add(ins_vaccines)
         db.session.commit()
-        return redirect(url_for('vet.view_vaccines'))
+        return redirect(url_for('vet.view_vaccines', num_page=1))
     return render_template('vet/vaccines/inserta_vaccines.html', pet_list=get_data )
 
 
@@ -167,7 +167,7 @@ def delete_vaccines(id):
     borrar_vaccines = Vaccines.query.get(id)
     db.session.delete(borrar_vaccines)
     db.session.commit()
-    return redirect(url_for('vet.view_vaccines')) 
+    return redirect(url_for('vet.view_vaccines', num_page=1)) 
 
 @vet.route('/vaccines/actualizar/<string:id>', methods=['GET', 'POST'])
 @login_required
@@ -181,5 +181,5 @@ def actualizar_vaccines(id):
         vaccines.serie = request.form['ser']
         vaccines.id_mascota = request.form['idpe']
         db.session.commit()
-        return redirect(url_for('vet.view_vaccines'))
+        return redirect(url_for('vet.view_vaccines', num_page=1))
     return render_template('vet/vaccines/actualiza_vaccines.html', pet_list=get_data, datos=vaccines)
