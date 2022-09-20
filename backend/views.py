@@ -63,7 +63,7 @@ from sqlalchemy import desc, asc
 @vet.route('/view/owner/<int:num_page>', methods=['GET', 'POST'])
 @login_required
 def view_owner(num_page):
-    view_owner = Owner.query.order_by(desc('id')).paginate(per_page=10, page=num_page, error_out=False)
+    view_owner = Owner.query.order_by(desc('id')).paginate(per_page=5, page=num_page, error_out=False)
     return render_template('vet/view_owner.html', datos=view_owner, num_page=1)
   
 
@@ -104,11 +104,12 @@ def inserta_pet():
         return redirect(url_for('vet.view_pet'))
     return render_template('vet/pet/inserta_pet.html', owner_list=get_data)
    
-@vet.route('/ver_mascota')
+@vet.route('/ver_mascota/<int:num_page>', methods=['GET', 'POST'])
 @login_required
-def view_pet():
+def view_pet(num_page):
     ver_mascota = db.session.query(Owner, Pet).select_from(Owner).join(Pet).all()
-    return render_template('vet/pet/view_pet.html', datos = ver_mascota)
+    view_pet = Pet.query.order_by(desc('id')).paginate(per_page=5, page=num_page, error_out=False).items
+    return render_template('vet/pet/view_pet.html', datos=view_pet, query=ver_mascota, num_page=1)
 
 
 @vet.route('/mascota/borrar/<string:id>')

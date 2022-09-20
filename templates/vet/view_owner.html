@@ -15,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        <!--  {% for elemento in datos.items %} -->
+ 
         {% for elemento in datos.items %}
         <tr>
     
@@ -37,10 +37,9 @@
 <nav aria-label="...">
     <ul class="pagination">
         {% for page in datos.iter_pages() %}
-        # iter_pages(): sirve para ITERAR el número de páginas
             {% if page %}
                 <li class="page-item">
-                <a href="{{ url_for('view_owner', num_page=page) }}"
+                <a href="{{ url_for('vet.view_owner', num_page=page) }}"
                 class="page-link" tabindex="-1">{{ page }}</a>
                 </li>
             {% else %}
