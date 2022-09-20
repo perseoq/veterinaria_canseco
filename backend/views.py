@@ -107,9 +107,9 @@ def inserta_pet():
 @vet.route('/ver_mascota/<int:num_page>', methods=['GET', 'POST'])
 @login_required
 def view_pet(num_page):
-    ver_mascota = db.session.query(Owner, Pet).select_from(Owner).join(Pet).all()
-    view_pet = Pet.query.order_by(desc('id')).paginate(per_page=5, page=num_page, error_out=False).items
-    return render_template('vet/pet/view_pet.html', datos=view_pet, query=ver_mascota, num_page=1)
+    ver_mascota = db.session.query(Owner, Pet).select_from(Owner).join(Pet).paginate(per_page=5, page=num_page, error_out=False)
+    # view_pet = Pet.query.order_by(desc('id')).paginate(per_page=5, page=num_page, error_out=False).items
+    return render_template('vet/pet/view_pet.html', query=ver_mascota, num_page=1)
 
 
 @vet.route('/mascota/borrar/<string:id>')
