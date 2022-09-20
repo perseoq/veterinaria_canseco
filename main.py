@@ -2,8 +2,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from vendors.database import db
 from vendors.config import DevConfig
+from datetime import timedelta
+
 
 app = Flask(__name__)
+app.permanent_session_lifetime = timedelta(hours=24)
 app.config.from_object(DevConfig)
 SQLAlchemy(app)
 
